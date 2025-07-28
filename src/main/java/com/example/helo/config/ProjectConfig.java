@@ -24,11 +24,12 @@ public class ProjectConfig {
     };
     @Bean
     UserDetailsService userDetailsService(DataSource datasource){
-        //var user= User.withUsername("join")
-         //       .password("123")
-         //       .authorities("read")
-          //      .build();
-        return new JdbcUserDetailsManager(datasource);
+       var user= User.withUsername("join")
+                .password("123")
+                .authorities("read")
+               .build();
+        //  return new JdbcUserDetailsManager(datasource);
+        return new InMemoryUserDetailsManager(user);
     }
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
